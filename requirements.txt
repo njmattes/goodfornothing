@@ -1,0 +1,6 @@
+numpy
+flask
+flask-assets
+flask-session
+pymongo
+redis
