@@ -2,7 +2,7 @@
 (function() {
   'use strict';
 
-  var body = d3.select('.body')
+  var body = d3.select('div')
     , timer
     , i = 0
     , time = 0

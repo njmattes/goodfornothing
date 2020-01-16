@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Good for nothing (HAL 9000 portrait)</title>
+{% extends 'base.html' %}
+{% block title_extra -%}
+  (HAL 9000 portrait)
+{%- endblock %}
+{% block head_css %}
   <link rel=stylesheet
         href={{ url_for('hal9000portrait.static', filename='css/main.css') }}>
-</head>
-<body>
-
-  <div class=body></div>
+{% endblock %}
+{% block main %}
+<div></div>
+{% endblock %}
+{% block body_js %}
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src={{ url_for('hal9000portrait.static', filename='js/main.js') }}?8></script>
-
-</body>
-</html>
+{% endblock %}

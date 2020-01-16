@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Boi</title>
+{% extends 'base.html' %}
+{% block title_extra %}(No. 1){% endblock %}
+{% block head_css %}
   <link rel=stylesheet
         href={{ url_for('no1.static', filename='css/main.css') }}>
 {#        href=/no1/static/css/main.css media=all>#}
-</head>
-<body>
-<main></main>
+{% endblock %}
+{% block body_js %}
 <script src={{ url_for('no1.static', filename='js/vendor/d3.v5.min.js') }}></script>
 <script src={{ url_for('no1.static', filename='js/vendor/d3-timer.v1.min.js') }}></script>
 <script>
@@ -55,6 +52,4 @@
 </script>
 
 <script src={{ url_for('no1.static', filename='js/app/kersulis-scatter_skin.v1.js') }}></script>
-
-</body>
-</html>
+{% endblock %}

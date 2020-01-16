@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Good for nothing (Selfie #1)</title>
+{% extends 'base.html' %}
+{% block title_extra %}(Selfie #1){% endblock %}
 {#  <link rel=stylesheet#}
 {#        href={{ url_for('no1.static', filename='css/main.css') }}>#}
-</head>
-<body>
-
-  <div class=body></div>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src={{ url_for('selfie1.static', filename='js/main.js') }}?8></script>
-
-</body>
-</html>
+{% block body_js %}
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src={{ url_for('selfie1.static', filename='js/main.js') }}?8></script>
+{% endblock %}
