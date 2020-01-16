@@ -2,7 +2,7 @@
 (function() {
   'use strict';
 
-  d3.json('/2017a/static/json/tiananmen_selfie_400x300_2.json', function(data) {
+  d3.json('/selfie1/static/json/tiananmen_selfie_400x300_2.json', function(data) {
 
     console.log(data);
 

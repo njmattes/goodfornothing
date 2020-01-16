@@ -12,7 +12,7 @@
     body.style('background-color', color.color);
   };
 
-  d3.csv('/2017b/static/csv/hal_rows.csv', function(error, data) {
+  d3.csv('/hal9000portrait/static/csv/hal_rows.csv', function(error, data) {
 
     var colors = data
       , n = colors.length

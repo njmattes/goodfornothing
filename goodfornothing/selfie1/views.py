@@ -3,8 +3,8 @@
 from flask import Blueprint, render_template
 
 
-mod = Blueprint('2017b', __name__,
-                url_prefix='/2017b',
+mod = Blueprint('selfie1', __name__,
+                url_prefix='/selfie1',
                 static_folder='static',
                 )
 
@@ -12,5 +12,5 @@ mod = Blueprint('2017b', __name__,
 @mod.route('/')
 def index():
     return render_template(
-        'images/2017b.html'
+        'images/selfie1.html'
     )

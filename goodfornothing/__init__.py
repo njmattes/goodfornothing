@@ -4,17 +4,19 @@ from flask import Flask
 from flask_assets import Environment, Bundle
 from flask_session import Session
 from goodfornothing.no1.views import mod as no1_views
-from goodfornothing.z2017a.views import mod as z2017a_views
-from goodfornothing.z2017b.views import mod as z2017b_views
+from goodfornothing.selfie1.views import mod as selfie1_views
+from goodfornothing.hal9000portrait.views import mod as hal9000_views
+from goodfornothing.views import mod as main_views
 
 
 app = Flask(__name__)
 app.config.from_object('goodfornothing.config.FlaskConfig')
 Session(app)
 
+app.register_blueprint(main_views)
 app.register_blueprint(no1_views)
-app.register_blueprint(z2017a_views)
-app.register_blueprint(z2017b_views)
+app.register_blueprint(selfie1_views)
+app.register_blueprint(hal9000_views)
 
 assets = Environment(app)
 assets.register('img_favicon',
