@@ -1,0 +1,42 @@
+
+$linkgrey: #767676
+$lineheight: 1.3em
+
+*
+  margin: 0
+  padding: 0
+html, body
+  width: 100%
+body
+  font-family: "franklin-gothic-urw", "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", "FranklinGothic", Arial, sans-serif
+  line-height: $lineheight
+h1
+  display: inline
+  font-size: 1em
+p
+  margin: 1em 0
+a
+  text-decoration: none
+  color: inherit
+  border-bottom: 1px solid black
+  &:hover
+    color: $linkgrey
+    border-bottom: 1px solid $linkgrey
+    &:before
+      border-bottom: 1px solid $linkgrey
+ul
+  list-style-type: none
+  li
+    position: relative
+    a:before
+      content: " "
+      display: block
+      width: 1em
+      height: 100%
+      border-bottom: 1px solid black
+      position: absolute
+      right: 100%
+      top: -1px
+main
+  width: 24em
+  margin: 3em auto 6em
