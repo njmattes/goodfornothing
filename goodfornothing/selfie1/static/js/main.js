@@ -8,6 +8,8 @@
 
   d3.json(JSON_URL, function(data) {
 
+    console.log(data)
+
     const canvas = d3.select('main').append('canvas')
       .attr('width', WIDTH * PIXEL)
       .attr('height', HEIGHT * PIXEL);
@@ -20,9 +22,7 @@
         return d['value'].length > 0 ? d['key'] : 0 });
 
     const draw_pixels = function draw_pixels() {
-      pixels = data.a[data.idx[i].toFixed(1)].concat(
-        data.b[data.idx[i].toFixed(1)]
-      );
+      pixels = data.a[data.idx[i]].concat(data.b[data.idx[i]]);
       for (let p = 0; p < pixels.length; ++p) {
         context.beginPath();
         context.rect(pixels[p][1] * PIXEL, pixels[p][0] * PIXEL,
