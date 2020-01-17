@@ -6,11 +6,10 @@
   const HEIGHT = 300;
   const PIXEL = 2;
 
-  d3.json(JSON_URL, function(data) {
+  d3.json(JSON_URL, function(error, data) {
 
-    console.log(data)
-
-    const canvas = d3.select('main').append('canvas')
+    const canvas = d3.select('main')
+      .append('canvas')
       .attr('width', WIDTH * PIXEL)
       .attr('height', HEIGHT * PIXEL);
     const context = canvas.node().getContext('2d');
