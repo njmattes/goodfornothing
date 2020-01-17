@@ -3,4 +3,9 @@
   margin: 0;
 }
 
+canvas {
+  display: block;
+  margin: 1em auto;
+}
+
 /*# sourceMappingURL=main.css.map */
