@@ -1,42 +1,39 @@
-
 (function() {
   'use strict';
 
-  d3.json('/selfie1/static/json/tiananmen_selfie_400x300_2.json', function(data) {
+  const JSON_URL = '/selfie1/static/json/tiananmen_selfie_400x300_2.json';
+  const WIDTH = 400;
+  const HEIGHT = 300;
+  const PIXEL = 2;
 
-    console.log(data);
+  d3.json(JSON_URL, function(data) {
 
-    var body = d3.select('body')
-      , canvas = d3.select('body').append('canvas')
-        .attr('width', 400)
-        .attr('height', 300)
-      , context = canvas.node().getContext('2d')
-      , time = data.idx[1]/30
-      , timer
-      , n = data.idx.length
-      , i = 0
-      , pixels = []
-      , max_idx_a = d3.max(d3.entries(data.ab), function(d) {
-        return d['value'].length > 0 ? d['key'] : 0 })
-    ;
+    const canvas = d3.select('main').append('canvas')
+      .attr('width', WIDTH * PIXEL)
+      .attr('height', HEIGHT * PIXEL);
+    const context = canvas.node().getContext('2d');
+    let time = data.idx[1] / 30;
+    let timer;
+    let i = 0;
+    let pixels = [];
+    let max_idx_a = d3.max(d3.entries(data.ab), function(d) {
+        return d['value'].length > 0 ? d['key'] : 0 });
 
-    console.log(data.a);
-    console.log(data.idx.length);
-
-    var draw_pixels = function draw_pixels() {
+    const draw_pixels = function draw_pixels() {
       pixels = data.a[data.idx[i].toFixed(1)].concat(
         data.b[data.idx[i].toFixed(1)]
       );
-      for (var p = 0; p < pixels.length; ++p) {
+      for (let p = 0; p < pixels.length; ++p) {
         context.beginPath();
-        context.rect(pixels[p][1], pixels[p][0], 1, 1);
+        context.rect(pixels[p][1] * PIXEL, pixels[p][0] * PIXEL,
+          PIXEL, PIXEL);
         context.fillStyle='rgb('+pixels[p][2].join(',')+')';
         context.fill();
         context.closePath();
       }
     };
 
-    var repeat = function repeat() {
+    const repeat = function repeat() {
       draw_pixels(pixels);
       i++;
       if (i >= data.idx.length) {
