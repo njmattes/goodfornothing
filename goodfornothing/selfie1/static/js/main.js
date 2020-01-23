@@ -1,15 +1,47 @@
 (function() {
   'use strict';
 
+  /**
+   * Path to JSON file containing RGB values of pixels to re-draw
+   * @type {string}
+   */
   const JSON_URL = '/selfie1/static/json/tiananmen_selfie_400x300_2.json';
+
+  /**
+   * Width of image in pixels
+   * @type {number}
+   */
   const WIDTH = 400;
+
+  /**
+   * Height of image in pixels
+   * @type {number}
+   */
   const HEIGHT = 300;
+
+  /**
+   * Size of pixels to draw
+   * @type {number}
+   */
   const PIXEL = 2;
 
+  /**
+   * Placeholder for animation delay in milliseconds
+   * @type {number}
+   */
   let time;
+
+  /**
+   * Placeholder for ID of timer
+   * @type {number}
+   */
   let timer;
   let n;
 
+  /**
+   * Canvas context for drawing image
+   * @type {ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext | CanvasRenderingContext2D | RenderingContext | OffscreenRenderingContext | OffscreenCanvasRenderingContext2D}
+   */
   const context = d3.select('main')
     .append('canvas')
     .attr('width', WIDTH * PIXEL)
@@ -17,6 +49,12 @@
     .node()
     .getContext('2d');
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param rgb
+   */
   const draw_pixel = function draw_pixel(x, y, rgb) {
     context.beginPath();
     context.rect(x * PIXEL, y * PIXEL, PIXEL, PIXEL);
