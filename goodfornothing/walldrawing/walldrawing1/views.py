@@ -12,5 +12,5 @@ mod = Blueprint('walldrawing1', __name__,
 @mod.route('/')
 def index():
     return render_template(
-        'images/walldrawing1.html'
+        'images/walldrawing/walldrawing1.html'
     )
