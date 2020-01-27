@@ -35,7 +35,7 @@ def bar():
 
 
 def hal_to_csv():
-    im = Image.open(os.path.join('static', 'images', 'hal_sm.jpg'))
+    im = Image.open(os.path.join('static', 'images', 'hal_sm.png'))
     data = np.asarray(im, dtype=np.uint8)
     data = data[:, :, :]
     data.setflags(write=True)

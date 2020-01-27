@@ -109,7 +109,7 @@ def image_pair_to_json(image1_file, image2_file, json_file):
 
 if __name__ == '__main__':
     image_pair_to_json(
-        'tiananmen_sm.jpg',
-        'selfie_stick_sm.jpg',
+        'tiananmen_sm.png',
+        'selfie_stick_sm.png',
         'tiananmen_selfie_400x300_2.json',
     )

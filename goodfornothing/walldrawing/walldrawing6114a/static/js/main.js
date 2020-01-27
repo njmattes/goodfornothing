@@ -2,7 +2,7 @@
   'use strict';
 
   const JSON_PATH = '/walldrawing6114a/static/json/venice_6114_serial.json';
-  const WALL_DIR = '/walldrawing6114a/static/jpg/serial_walls/';
+  const WALL_DIR = '/walldrawing6114a/static/png/serial_walls/';
   const TIMER = 100;
 
   let n;
