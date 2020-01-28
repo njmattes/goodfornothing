@@ -13,26 +13,31 @@
       (HEIGHT - (N - 1) * OPTIONS.size) / 2);
   console.log(xs, ys);
 
-  const context = d3.select('main')
+  const canvas = d3.select('main')
     .append('canvas')
     .attr('width', WIDTH)
-    .attr('height', HEIGHT)
+    .attr('height', HEIGHT);
+  const ctx = canvas
     .node()
     .getContext('2d');
 
   const time = 300;
+  let points;
 
   const pick_different_random_point = function pick_different_random_point(points) {
     for (let i = 0; i < points.length; ++i) {
       for (let j = 0; j < 2; ++j) {
         if (points[i][j] === 0) {
+          // Points on left edge or top
           points[i][j] += Math.floor(Math.random() * 2)
-        } else if (j === 0 && points[i][j] === M) {
+        } else if (j === 0 && points[i][j] === M - 1) {
+          // Point on right
           points[i][j] -= Math.floor(Math.random() * 2)
-        } else if (j === 1 && points[i][j] === N) {
+        } else if (j === 1 && points[i][j] === N - 1) {
+          // Point on bottom
           points[i][j] -= Math.floor(Math.random() * 2)
         } else {
-          points[i][j] += (1 - Math.floor(Math.random() * 3))
+          points[i][j] += (Math.floor(Math.random() * 3) - 1)
         }
       }
     }
@@ -52,21 +57,37 @@
     ];
   };
 
-  const draw_polygon = function draw_polygon(points) {
-    context.fillStyle = 'rgba(0, 0, 0, .1)';
-    context.beginPath();
-    context.moveTo(xs[points[0][0]], ys[points[0][1]]);
-    for (let i = 1; i < points.length; ++i) {
-      context.lineTo(xs[points[i][0]], ys[points[i][1]]);
-    }
-    context.closePath();
-    context.fill();
+  const get_point_from_indices = function get_point_from_index(idx) {
+    return [
+      xs[points[idx][0]],
+      ys[points[idx][1]]
+    ];
   };
 
-  let points = pick_initial_points();
+  const draw_polygon = function draw_polygon(points) {
+    ctx.fillStyle = OPTIONS.fg;
+    ctx.beginPath();
+    let pt = get_point_from_indices(0);
+    console.log(pt);
+    ctx.moveTo(pt[0], pt[1]);
+    for (let i = 1; i < points.length; ++i) {
+      let pt = get_point_from_indices(i);
+      console.log(pt);
+      ctx.lineTo(pt[0], pt[1]);
+    }
+    ctx.closePath();
+    ctx.fill();
+  };
+
+  const init = function init() {
+    points = pick_initial_points();
+    console.log(points);
+    ctx.fillStyle = OPTIONS.bg;
+    console.log(canvas.width);
+    ctx.fillRect(0, 0, canvas.node().width, canvas.node().height);
+  };
 
   const repeat = function repeat() {
-
     draw_polygon(points);
     points = pick_different_random_point(points);
 
@@ -74,9 +95,9 @@
       repeat,
       time,
     );
-
   };
 
+  init();
   repeat();
 
 })(OPTIONS);
