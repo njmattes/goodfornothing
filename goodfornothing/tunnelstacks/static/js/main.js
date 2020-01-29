@@ -11,7 +11,6 @@
   const ys = Array.from(Array(N),
     (d, index) => index * OPTIONS.size +
       (HEIGHT - (N - 1) * OPTIONS.size) / 2);
-  console.log(xs, ys);
 
   const canvas = d3.select('main')
     .append('canvas')
@@ -21,7 +20,6 @@
     .node()
     .getContext('2d');
 
-  const time = 300;
   let points;
 
   const pick_different_random_point = function pick_different_random_point(points) {
@@ -93,7 +91,7 @@
 
     let timer = setTimeout(
       repeat,
-      time,
+      OPTIONS.time,
     );
   };
 

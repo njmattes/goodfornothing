@@ -9,13 +9,14 @@ mod = Blueprint('tunnelstacks', __name__,
                 template_folder='templates',
                 )
 
-
 @mod.route('/')
 def index():
     return render_template(
         'tunnelstacks/index.html',
         size=request.args.get('size') or 20,
         sides=request.args.get('sides') or 4,
-        fg=request.args.get('user') or 'rgba(0, 0, 0, .01)',
-        bg=request.args.get('bg') or 'rgba(255, 255, 255)',
+        fg=request.args.get('user') or '0, 0, 0',
+        bg=request.args.get('bg') or '255, 255, 255',
+        opacity=request.args.get('opacity') or .05,
+        time=request.args.get('time') or 300,
     )

@@ -13,8 +13,10 @@
     const OPTIONS = {
       size: {{ size }},
       sides: {{ sides }},
-      fg: '{{  fg }}',
-      bg: '{{  bg }}'
+      fg: '{{ 'rgba({}, {})'.format(fg, opacity) }}',
+      bg: '{{ 'rgba({}, 1)'.format(bg) }}',
+      opacity: {{ opacity }},
+      time: {{ time }}
     };
   </script>
   <script src={{ url_for('tunnelstacks.static', filename='js/main.js') }}?1></script>
