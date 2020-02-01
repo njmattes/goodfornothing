@@ -1,8 +1,8 @@
 (function() {
   'use strict';
 
-  const JSON_PATH = '/walldrawing6114a/static/json/venice_6114_serial.json';
-  const WALL_DIR = '/walldrawing6114a/static/jpg/serial_walls/';
+  const JSON_PATH = '/walldrawings/static/json/6114a/venice_6114_serial.json';
+  const WALL_DIR = '/walldrawings/static/jpg/6114a/serial_walls/';
   const TIMER = 100;
 
   let n;

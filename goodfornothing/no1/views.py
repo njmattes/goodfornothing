@@ -14,7 +14,8 @@ from goodfornothing.no1.mongo import get_near
 
 mod = Blueprint('no1', __name__,
                 url_prefix='/no1',
-                static_folder='static'
+                static_folder='static',
+                template_folder='templates',
                 )
 
 

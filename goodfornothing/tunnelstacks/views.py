@@ -3,14 +3,12 @@
 from flask import Blueprint, render_template, request
 
 
-mod = Blueprint('tunnelstacks', __name__,
-                url_prefix='/tunnelstacks',
-                static_folder='static',
-                template_folder='templates',
-                )
+tunnelstacks = Blueprint(
+    'tunnelstacks', __name__, url_prefix='/tunnelstacks',
+    static_folder='static', template_folder='templates', )
 
 
-@mod.route('/')
+@tunnelstacks.route('/')
 def index():
     return render_template(
         'tunnelstacks/index.html',

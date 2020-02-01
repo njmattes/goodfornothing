@@ -3,14 +3,13 @@
 from flask import Blueprint, render_template
 
 
-mod = Blueprint('selfie1', __name__,
-                url_prefix='/selfie1',
-                static_folder='static',
-                )
+selfie1 = Blueprint(
+    'selfie1', __name__, url_prefix='/selfie1',
+    static_folder='static', template_folder='templates', )
 
 
-@mod.route('/')
+@selfie1.route('/')
 def index():
     return render_template(
-        'images/selfie1.html'
+        'selfie1/index.html'
     )
