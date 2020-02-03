@@ -31,7 +31,7 @@ mod = Blueprint('no1', __name__,
            'threshold/<int:threshold>/network/<int:network>')
 def index(cg='g', size=20, number=10, timer=20, threshold=30, network=3):
     return render_template(
-        'images/no1.html',
+        'no1/index.html',
         size=size,
         number=number,
         timer=timer,
