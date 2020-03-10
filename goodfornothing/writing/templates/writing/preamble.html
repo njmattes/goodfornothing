@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block head_css %}
+<link rel=stylesheet href={{ url_for('main.static', filename='css/main.css') }}/>
+{% endblock %}
+{% block title_extra %}(Proposal for CICA NMAC){% endblock %}
+{% block main %}
+{% filter markdown %}
+What are digital abstractions? For modern, abstract painting, the
+physicality of its material components corroborates its meaning:
+the substrate, the paint itself, or collaged elements questioned
+conventional relations between figure and ground. Perspective was
+key to understanding this meaning, as was the picture plane
+(corresponding to the surface of a picture, perpendicular to the
+viewer's line of sight) which fixed the object in time and space.
+
+But the digital image has no physicality and the picture plane’s
+status is toppled by the digital screen. The screen’s nature is to
+show and to obscure. Its narrative structure demands the suspension
+of disbelief, as its form dissolves, shifts, and defers experience
+by placing sole emphasis upon our sight. It forever hypnotizes us,
+seamlessly eliminating its own qualities as a substrate. It owns the
+characteristics of a Zelig: forever changing, unstable in any
+context, and destabilizing context itself. Informed by photography,
+film, and every meme that ever was, the digital image shifts readily
+between aspects of each. Its meaning is necessarily slippery and
+hard to define; possessing a quality that makes it hard to pin down
+or make fit into a neat category.
+
+Given this slipperiness, can we ever grasp the basic, tectonic
+components of the digital image? The bits and pixels of the screen
+do little to help our visual understanding of its relationship to
+one’s perspective in everyday life. The seductive illusions and
+concomitant complexities of our online experiences have enabled an
+entirely new *trompe l’oeil* hell of phishing attacks, spoofs, and
+cross-domain tomfoolery.
+
+Digital images, precisely because of their ambivalence towards the
+picture plane, forever slip from our grasp. Only as they recede from
+our mental, perceptual grasp do they reveal aspects of their
+construction. Rather than fight against this liminal quality, we
+exploit it.
+
+Forever shifting, always shiftless. Stasis in short, on an endless
+joyride from nowhere to anywhere. How does one go about working with
+this shiftlessness? We began with a metaphorical toast to Herman
+Melville’s *crème de la crème* good-for-nothing anti-hero, Bartleby.
+Images aligned with a scrivener of the post-modern age that can only
+tell us: ‘I prefer not to’.
+
+[*Good for nothing (no. 1)*]({{ url_for('no1.index') }}) uses a tonal rubric to show the differences
+between an actual pixel and much larger, constructed illustrations of
+pixels. Its slowly changing, random surface continuously transforms
+sets of sequentially set representations of ‘pixels’. As this constructed
+image evolves, then devolves by erasure, each new lighter values
+take over from previous square units—questioning our base, retinal
+understanding of the screen made up of pixels invisible to the human eye.
+{% endfilter %}
+{% endblock %}
