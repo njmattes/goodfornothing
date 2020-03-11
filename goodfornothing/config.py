@@ -9,7 +9,7 @@ class FlaskConfig(object):
 
     SESSION_TYPE = 'redis'
     SESSION_REDIS = redis.from_url('redis://127.0.0.1:6379')
-    CACHE_KEY_PREFIX = 'boi_prod'
+    CACHE_KEY_PREFIX = 'goodfornothing_prod'
 
     ADMINS = frozenset(['matteson@obstructures.org'])
     SECRET_KEY = 'REPLACEME'
@@ -20,4 +20,4 @@ class FlaskConfig(object):
 class MongoConfig(object):
     HOST = 'localhost'
     PORT = 27017
-    DATABASE = 'boi'
+    DATABASE = 'goodfornothing'
