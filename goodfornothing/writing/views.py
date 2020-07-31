@@ -17,3 +17,15 @@ def preamble():
     return render_template(
         'writing/preamble.html'
     )
+
+
+@writing.route('/bios')
+def bios():
+    """Bios
+
+    :return: Template for bios
+    :rtype: str
+    """
+    return render_template(
+        'writing/bios.html'
+    )

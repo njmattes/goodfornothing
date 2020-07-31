@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block head_css %}
+<link rel=stylesheet href={{ url_for('main.static', filename='css/main.css') }}/>
+{% endblock %}
+{% block title_extra %}(Proposal for CICA NMAC){% endblock %}
+{% block main %}
+{% filter markdown %}
+
+  Nicholas Kersulis’ practice applies systems of organization to
+  cultural artifacts through formal devices such as montage, accretion,
+  and erasure, and through the conventions of exhibition display
+  and graphic design. Built into the resultant system is an implicit
+  absurdity that questions the objectivity of the system itself—a
+  systematic critique of systems in the form of a system. Nathan
+  Matteson’s practice is fiercely anti-disciplinary and ruthlessly
+  collaborative. It operates on the principle that the best outcomes
+  are the result of the worst arguments amongst the most people. As
+  a general rule he maintains a state of displeasure, but less so
+  when his work engages with the gaps, moments, mistakes, and fictive
+  spaces between things. Together they explore these concepts and
+  maneuvers within the non-physical, infinite spaces of the internet.
+  Yet constrained by our physical engagements with the ‘space’ of
+  the internet, the limitlessness becomes an illusion.
+
+{% endfilter %}
+{% endblock %}
