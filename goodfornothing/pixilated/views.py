@@ -3,12 +3,12 @@
 from flask import Blueprint, render_template, request
 
 
-tunnelstacks = Blueprint(
-    'tunnelstacks', __name__, url_prefix='/tunnelstacks',
+pixilated = Blueprint(
+    'pixilated', __name__, url_prefix='/pixilated',
     static_folder='static', template_folder='templates', )
 
 
-@tunnelstacks.route('/')
+@pixilated.route('/')
 def index():
     return render_template(
         'tunnelstacks/index.html',

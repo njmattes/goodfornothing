@@ -7,7 +7,7 @@ from flaskext.markdown import Markdown
 from goodfornothing.no1.views import mod as no1_views
 from goodfornothing.selfie1.views import selfie1
 from goodfornothing.walldrawings.views import walldrawing
-from goodfornothing.tunnelstacks.views import tunnelstacks
+from goodfornothing.pixilated.views import pixilated
 from goodfornothing.hal9000portrait.views import mod as hal9000_views
 from goodfornothing.writing.views import writing
 from goodfornothing.views import mod as main_views
@@ -23,7 +23,7 @@ app.register_blueprint(main_views)
 app.register_blueprint(no1_views)
 app.register_blueprint(selfie1)
 app.register_blueprint(walldrawing)
-app.register_blueprint(tunnelstacks)
+app.register_blueprint(pixilated)
 app.register_blueprint(hal9000_views)
 app.register_blueprint(writing)
 
