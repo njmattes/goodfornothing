@@ -1,7 +1,82 @@
 # Good-for-nothing
 
-Code for the Good-for-nothing project by Nicholas Kersulis and Nathan Matteson,
-found at [goodfornothing.pictures](https://goodfornothing.pictures).
+The Good-for-nothing project by [Nicholas Kersulis](http://kersulis.com)
+and [Nathan](http://skeptic.ist) [Matteson](http://obstructures.org)
+lives at [goodfornothing.pictures](https://goodfornothing.pictures).
+
+## Good-for-nothing (no. 1) interface
+
+Good-for-nothing (no. 1) has a simple URL-based interface for viewers
+who want to explore the work beyond its default grayscale state. The API
+is a hot mess right now (Oct 2020), but is more-or-less built around
+alternating key-value pairs separated by slashes. The easiest way to ensure
+its functionality is to include all key-value pairs in the following order:
+
+```
+goodfornothing.pictures/color/<c|g>/size/<int>/number/<int>/timer/<int>/threshold/<int>/network/<int>')
+```
+
+`color/c` switches from greyscale to color. Colors are currently not
+customizable. Defaults to `g` for greyscale pixels.
+
+`size/<int>` determines the size of the pixels. Defaults to `20`.
+
+`number/<int>` determines the batch size of 'pixels' that are drawn during
+a single frame of the animation. Defaults to `10`.
+
+`timer/int` determines the temporal delay in milliseconds between
+frames. Defaults to `20` milliseconds.
+
+The reciprocal of `threshold/int` determines the point at which the animation
+switches from placing randomly colored pixels on the canvas to coloring
+each pixel according to its closest neighbors. E.g. a threshold of 2 would
+cause 1/2 of the screen to be random, and the latter half of the pixels to be
+averaged. Defaults to `30` (1/30th of the screen is randomized before smoothing).
+
+`network/<int>` determines the number of neighboring pixels to use to
+average the colors after `threshold` has been met. Defaults to `3`.
+
+`number` and `timer` primarily affect the speed of the animation---both
+its framerate and the length of time it takes to complete a cycle of
+drawing and erasure.
+
+`threshold` and `network` affect the quality of the 'surface' that is drawn.
+
+Future parameters will be included one day, and the API will eventually be
+made more robust.
+
+
+## Local installation
+
+The project has few dependencies. Caching depends on `redis` which can be
+installed `brew install redis` on OS X or `apt-get install redis-server`
+(or similar depending on your package manager) on many *nix boxes.
+It also depends on MongoDB which is slightly trickier to install. Instructions
+for installing the open source Community edition on most platforms can be found
+here: [docs.mongodb.com/manual/administration/install-community/]
+(https://docs.mongodb.com/manual/administration/install-community/).
+
+The easiest way to install Good-for-nothing locally on your own machine,
+for viewing or for further development, is to checkout the repo:
+
+```
+git clone http://github.com/njmattes/goodfornothing
+cd goodfornothing
+```
+
+The web service is built in python atop `flask`. Other common packages used
+include `numpy`, `scikit-learn`, and `imageio`. Required python packages
+can be installed simply by issuing:
+
+```
+pip install -r requirements.txt
+```
+
+Launching the service cab done with
+
+```
+python run.py
+```
 
 ## Set up to run from a Raspberry Pi
 
