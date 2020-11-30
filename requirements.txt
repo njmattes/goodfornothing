@@ -5,3 +5,4 @@ flask-session
 flask-markdown
 pymongo
 redis
+pillow
