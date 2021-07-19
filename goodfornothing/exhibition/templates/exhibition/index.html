@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title_extra %}(Exhibition){% endblock %}
+{% block head_css %}
+  <link rel=stylesheet
+        href={{ url_for('exhibition.static', filename='css/main.css') }}>
+{#        href=/no1/static/css/main.css media=all>#}
+{% endblock %}
+{% block body_js %}
+<script src={{ url_for('no1.static', filename='js/vendor/d3.v5.min.js') }}></script>
+<script src={{ url_for('no1.static', filename='js/vendor/d3-timer.v1.min.js') }}></script>
+<script>
+
+  /**
+   * Size of pixels. Defaults to 20.
+   * @type {number}
+   */
+  {#const size = {{ size }};#}
+
+  /**
+   * Amount of pixels to draw at one time. Defaults to 10.
+   * @type {number}
+   */
+  {#const number = {{ number }};#}
+
+  /**
+   * Interval in milliseconds between drawing pixels.
+   * Defaults to 20.
+   * @type {number}
+   */
+  {#const timer = {{ timer }};#}
+
+  /**
+   * Algorithm changes from random to averaged pixels once the
+   * reciprocal of the threshold of area of screen is covered.
+   * @type {number}
+   */
+  {#const threshold = {{ threshold }};#}
+
+  /**
+   * Determines the number of nearest pixels to average from when
+   * determining colors.
+   * @type {number}
+   */
+  {#const network = {{ network }};#}
+
+  /**
+   * Whether to draw in color ('c') or greyscale ('g')
+   * @type {string}
+   */
+  {#const cg = '{{ cg }}';#}
+
+</script>
+<script src=https://cdn.jsdelivr.net/npm/openseadragon@2.4/build/openseadragon/openseadragon.min.js></script>
+<script src={{ url_for('exhibition.static', filename='js/app/artic.v0.js') }}></script>
+{% endblock %}
