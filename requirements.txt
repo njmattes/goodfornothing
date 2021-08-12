@@ -5,3 +5,6 @@ flask-session
 flask-markdown
 pymongo
 redis
+imageio
+scikit-learn
+scikit-image

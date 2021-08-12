@@ -9,6 +9,7 @@ from goodfornothing.selfie1.views import selfie1
 from goodfornothing.walldrawings.views import walldrawing
 from goodfornothing.pixilated.views import pixilated
 from goodfornothing.hal9000portrait.views import mod as hal9000_views
+from goodfornothing.no2.views import mod as no2_views
 from goodfornothing.writing.views import writing
 from goodfornothing.views import mod as main_views
 
@@ -25,6 +26,7 @@ app.register_blueprint(selfie1)
 app.register_blueprint(walldrawing)
 app.register_blueprint(pixilated)
 app.register_blueprint(hal9000_views)
+app.register_blueprint(no2_views)
 app.register_blueprint(writing)
 
 print(app.url_map)
