@@ -33,7 +33,7 @@
   const ctx = canvas.node().getContext('2d');
   ctx.LineCap = 'round';
 
-  d3.json(`/horizon/static/js/app/horizon_exp1.5.json`, {
+  d3.json(`/horizon/static/js/app/no2_exp1.5.json`, {
     headers: {
       'Content-type': 'application/json; charset=UTF-8'
     }}).then(json => {
