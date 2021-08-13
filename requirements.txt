@@ -8,3 +8,4 @@ redis
 imageio
 scikit-learn
 scikit-image
+pillow
