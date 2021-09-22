@@ -5,8 +5,8 @@
   const timer = 10;
   const size = 40;
 
-  let width = window.innerWidth;
-  let height = window.innerHeight;
+  let width = window.screen.width;
+  let height = window.screen.height;
 
   /**
    * Padding multiplier

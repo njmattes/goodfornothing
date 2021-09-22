@@ -4,8 +4,8 @@
   const timer = 1000;
   const size = 40;
 
-  let width = window.innerWidth;
-  let height = window.innerHeight;
+  let width = window.screen.width;
+  let height = window.screen.height;
 
   /**
    * Padding surrounding artwork
