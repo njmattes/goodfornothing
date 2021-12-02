@@ -88,6 +88,9 @@
      * Note that the idx argument must be >= 1.
      */
     let row = math.subset(arr, math.index(idx-1, math.range(0, width)))
+
+    // Create three stacked rows. One has the channel value in the pixel above,
+    // one the pixel to the left, the other to the right.
     let hues = math.concat(
       row.reshape([1, width]),
       math.map(row, function(d, i, m) {
@@ -103,13 +106,17 @@
       0
     );
 
+    // For each pixel, average the three channel values above
     hues = math.apply(hues, 0, mean_without_zeros)
+
+    // For each pixel randomly move the channel by 2
     hues = math.map(hues, function(d) {
       return d === 0
         ? 0
         : d + math.pickRandom([-2, 2])
     });
 
+    // I think this is turning off a small amount of random pixels in the row.
     arr.subset(
       math.index(idx, math.range(0, width)),
       math.dotMultiply(
@@ -148,7 +155,7 @@
   };
 
   // The probability of a pixel being non-empty
-  const n0 = 0.1;
+  const n0 = 0.075;
 
   // idxs hold values 0 or 1 indicating the presence of a colored pixel.
   // arrs hold color data from 0 to 255.
@@ -178,6 +185,7 @@
       let non_white_idxs = get_nonwhite_idxs(previous);
       let movement = math.randomInt([non_white_idxs.length], -1, 2);
       let new_idxs = math.add(non_white_idxs, movement);
+
 
       new_idxs = math.map(new_idxs, function (d) {
         return d >= width ? width - 1 : d;
