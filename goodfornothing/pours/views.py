@@ -15,3 +15,10 @@ def index():
     return render_template(
         'pours/index.html',
     )
+
+
+@mod.route('/2')
+def black():
+    return render_template(
+        'pours/black.html',
+    )
