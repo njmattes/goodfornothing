@@ -3,9 +3,9 @@
 
   // const WIDTH = 32;
   const WIDTH = screen.width;
-  const HEIGHT = 24;
-  const PIXEL = 4;
-  let time = 100;
+  const HEIGHT = 12;
+  const PIXEL = 2;
+  let time = 20;
   let timer;
   let matrix = [];
 
