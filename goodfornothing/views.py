@@ -15,6 +15,13 @@ def index():
     )
 
 
+@mod.route('/sketches')
+def sketches():
+    return render_template(
+        'sketches.html'
+    )
+
+
 # REDIRECTS
 
 @mod.route('/tunnelstacks')

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block head_css %}
+<link rel=stylesheet href={{ url_for('main.static', filename='css/main.css') }}/>
+{% endblock %}
+{% block main %}
+  <p>Good-for-nothing sketches</p>
+  <ul>
+    <li><a href={{ url_for('hal9000portrait.index') }}>
+        Good-for-nothing (HAL 9000 portrait)</a></li>
+    <li><a href=/selfie1>
+        Good-for-nothing (Selfie #1)</a></li>
+    <li><a href={{ url_for('walldrawings.walldrawing_6114a') }}>
+        Good-for-nothing (Wall drawing 6114a)</a></li>
+  </ul>
+{% endblock %}
