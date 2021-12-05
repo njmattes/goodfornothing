@@ -13,11 +13,13 @@ from sklearn.cluster import KMeans
 
 
 class HorizonImages(object):
-    def __init__(self, _dir):
+    # def __init__(self, _dir):
+    def __init__(self, _img):
         self.n = 16
-        self.dir = os.path.abspath(_dir)
-        self.image_files = glob(os.path.join(self.dir, '*.tif'))
-        self.image_file = im.imread(self.image_files[0])
+        # self.dir = os.path.abspath(_dir)
+        # self.image_files = glob(os.path.join(self.dir, '*.tif'))
+        # self.image_file = im.imread(self.image_files[0])
+        self.image_file = im.imread(_img)
         self.height, self.width, self.depth = self.image_file.shape
         SCALE = 50
         self.image_file = resize(self.image_file, (self.height // SCALE,
@@ -61,6 +63,12 @@ class HorizonImages(object):
             self.indexes[:, :-1], match.shape)
         return np.array((windows == match).all(axis=(2, 3)).nonzero()).T
 
+    def get_sky_hue(self):
+        return np.argmax(np.bincount(self.indexes[0, :]))
+
+    def get_sea_hue(self):
+        return np.argmax(np.bincount(self.indexes[-1, :]))
+
     def probability(self):
         sea = np.zeros((16, 16, 16, 16))
         sky = np.zeros((16, 16, 16, 16))
@@ -86,7 +94,7 @@ class HorizonImages(object):
                 vert[floor((y - 1) / self.height * 10),
                      self.indexes[y - 1, b]] += 1
 
-        exponent = 1.5
+        exponent = 3
         sea[(sea == 0).all(axis=-1)] = .00001
         sky[(sky == 0).all(axis=-1)] = .00001
         sea = sea ** exponent
@@ -96,10 +104,12 @@ class HorizonImages(object):
         vert /= vert.sum(axis=-1).reshape((10, -1))
         colors = (self.centers * 255) // 1
 
-        with open('../static/js/app/horizon_exp{}.json'.format(exponent), 'w') as f:
+        with open('../static/js/app/horizon-8662-exp{}.json'.format(exponent), 'w') as f:
             json.dump({'colors': colors.tolist(),
                        'sea': sea.tolist(),
                        'sky': sky.tolist(),
+                       'sky_hue': int(self.get_sky_hue()),
+                       'sea_hue': int(self.get_sea_hue()),
                        'vert': vert.tolist(), }, f)
 
 
