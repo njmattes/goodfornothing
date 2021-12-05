@@ -31,8 +31,6 @@ app.register_blueprint(no2_views)
 app.register_blueprint(pours_views)
 app.register_blueprint(writing)
 
-print(app.url_map)
-
 assets = Environment(app)
 assets.register('img_favicon',
                 Bundle('images/favicon.png', output='gen/favicon.png'))
