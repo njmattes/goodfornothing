@@ -52,7 +52,7 @@ def glitch_walk(walking_mario, offset=6, ops=1000, seq=0):
 
     # img.save('MARIOa.png')
     # img.save('../output/1/MARIO-dk-{}-{}.png'.format(N, datetime.now()))
-    img.save('../output/4/MARIO-dk-{}-{}-{}.png'.format(seq, ops, datetime.now()))
+    img.save('../output/4/MARIO-dk-{:03d}-{}-{}.png'.format(seq, ops, datetime.now()))
     # img.show()
 
 
@@ -85,17 +85,17 @@ def make_walking_video():
     import os
 
     image_folder = '../output/4'
-    video_name = 'video.mpg'
+    video_name = 'video.avi'
 
-    images = [img for img in os.listdir(image_folder) if img.endswith(".png")]
+    images = [img for img in sorted(os.listdir(image_folder)) if img.endswith('.png')]
     frame = cv2.imread(os.path.join(image_folder, images[0]))
     height, width, layers = frame.shape
+    four_cc = cv2.VideoWriter_fourcc(*'MJPG')
 
-    # video = cv2.VideoWriter(video_name, 0, 1, (width, height))
     video = cv2.VideoWriter(
         video_name,
-        0,
-        1,
+        four_cc,
+        8,
         (width, height))
 
     for image in images:
@@ -108,5 +108,5 @@ def make_walking_video():
 if __name__ == '__main__':
     # from marios.dk import WALK1
     # glitch_walk(WALK1, 0, 0)
-    # make_frames(64)
+    # make_frames(128)
     make_walking_video()
