@@ -13,7 +13,8 @@ from neighbors import neighbors
 canvas = np.empty((1920, 1080))
 
 
-def glitch_walk(walking_mario, offset=6, ops=1000, seq=0):
+def glitch_walk(walking_mario, offset=6, ops=1000, seq=0,
+                video_width=1920, video_height=1080, pixel_width=30):
 
     height, width = walking_mario.shape
 
@@ -26,8 +27,8 @@ def glitch_walk(walking_mario, offset=6, ops=1000, seq=0):
         walking_mario[tuple(idxa)] = pxlb
         walking_mario[tuple(idxb)] = pxla
 
-    scale = 30
-    shp = (1920, 1080)
+    scale = pixel_width
+    shp = (video_width, video_height)
 
     arr = scale_pixels(walking_mario, scale)
 
@@ -38,53 +39,68 @@ def glitch_walk(walking_mario, offset=6, ops=1000, seq=0):
             pxl = COLORS[arr[j][i]]  # Set the colour accordingly
             pixels[(offset * scale + i) % shp[0], 270 + j] = pxl
 
-
-    # img = Image.new('RGB', shp, 'white')  # Create a new black image
-    # pixels = img.load()  # Create the pixel map
-    # for i in range(shp[0]):    # For every pixel:
-    #     for j in range(shp[1]):
-    #         ii = floor(i/scale)
-    #         jj = floor(j/scale)
-    #         pxl = COLORS[MARIO[jj][ii]]  # Set the colour accordingly
-    #         pixels[i, j] = pxl
+    img.save('../output/5/MARIO-dk-{:04d}-{}-{}.png'.format(seq, ops, datetime.now()))
 
 
-
-    # img.save('MARIOa.png')
-    # img.save('../output/1/MARIO-dk-{}-{}.png'.format(N, datetime.now()))
-    img.save('../output/4/MARIO-dk-{:03d}-{}-{}.png'.format(seq, ops, datetime.now()))
-    # img.show()
-
-
-def make_frames(n_frames):
+def make_some_frames(start_n, n_frames, max_n, idx, offset=26, gradient=1,
+                     video_width=1920, video_height=1080, pixel_width=30):
     from marios.dk import WALK1
     from marios.dk import WALK2
 
-    offset = 26
-    walking_mario = MARIO
+    idx += 1
 
-    for n in range(n_frames*2+1):
-        width = 1920 / 30  # 64
-        if n == 0 or n == n_frames * 2:
+    for i in range(n_frames):
+
+        if gradient == 1:
+            n = start_n + i + 1
+        elif gradient == -1:
+            n = start_n - i - 1
+
+
+
+        if n == 1 or n == max_n:
             walking_mario = MARIO.copy()
         else:
             if n % 2 == 0:
                 walking_mario = WALK1.copy()
             else:
                 walking_mario = WALK2.copy()
+
+        width = video_width / pixel_width
         if offset >= width:
             offset = offset % width
-        glitch_walk(walking_mario, offset,
-                    int(1000**((n_frames-abs(n-n_frames-1))/n_frames)), n)
-                    # n_frames-abs(n-n_frames-1), n)
+
+        if gradient == 1 and i == 0:
+            ops = 0
+        else:
+            exp = (max_n - abs(2 * n - max_n)) / max_n
+            ops = int(1000 ** exp)
+        print('index {}, n {}, grad {}, ops {}'.format(i, n, gradient, ops))
+        glitch_walk(walking_mario, offset, ops, idx+i,
+                    video_width, video_height, pixel_width)
         offset += 5
+
+    return n, offset, idx + i
+
+
+def make_all_frames():
+    max_n = 1024
+    idx = 0
+
+    start_n, offset, idx = make_some_frames(0, max_n//2, max_n, idx)
+    start_n, offset, idx = make_some_frames(start_n, max_n//2, max_n, idx, offset, -1)
+    start_n, offset, idx = make_some_frames(0, 1, 1, idx)
+    # start_n, offset, idx = make_some_frames(start_n, 30, max_n, idx, offset, 1)
+    # start_n, offset, idx = make_some_frames(start_n, 10, max_n, idx, offset, -1)
+    # start_n, offset, idx = make_some_frames(start_n, 22, max_n, idx, offset, 1)
+    # start_n, offset, idx = make_some_frames(start_n, 64, max_n, idx, offset, -1)
 
 
 def make_walking_video():
     import cv2
     import os
 
-    image_folder = '../output/4'
+    image_folder = '../output/5'
     video_name = 'video.avi'
 
     images = [img for img in sorted(os.listdir(image_folder)) if img.endswith('.png')]
@@ -110,3 +126,4 @@ if __name__ == '__main__':
     # glitch_walk(WALK1, 0, 0)
     # make_frames(128)
     make_walking_video()
+    # make_all_frames()
