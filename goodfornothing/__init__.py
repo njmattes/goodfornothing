@@ -10,6 +10,7 @@ from goodfornothing.walldrawings.views import walldrawing
 from goodfornothing.pixilated.views import pixilated
 from goodfornothing.hal9000portrait.views import mod as hal9000_views
 from goodfornothing.no2.views import mod as no2_views
+from goodfornothing.mario.views import mod as mario_views
 from goodfornothing.pours.views import mod as pours_views
 from goodfornothing.writing.views import writing
 from goodfornothing.views import mod as main_views
@@ -29,7 +30,9 @@ app.register_blueprint(pixilated)
 app.register_blueprint(hal9000_views)
 app.register_blueprint(no2_views)
 app.register_blueprint(pours_views)
+app.register_blueprint(mario_views)
 app.register_blueprint(writing)
+
 
 assets = Environment(app)
 assets.register('img_favicon',

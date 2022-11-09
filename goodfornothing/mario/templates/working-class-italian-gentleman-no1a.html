@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title_extra %}(Working-class Italian gentleman #1a){% endblock %}
+{% block head_css %}
+  <link rel=stylesheet
+        href={{ url_for('mario.static', filename='css/main.css') }}?1>
+{% endblock %}
+{% block main %}
+  <video preload autoplay loop muted>
+    <source src="{{  url_for('mario.static', filename='video/video-001b.mp4') }}" type="video/mp4">
+    <source src="{{  url_for('mario.static', filename='video/video-001b.webm') }}" type="video/webm">
+  </video>
+{% endblock %}
