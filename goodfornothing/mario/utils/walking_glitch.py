@@ -39,7 +39,7 @@ def glitch_walk(walking_mario, offset=6, ops=1000, seq=0,
             pxl = COLORS[arr[j][i]]  # Set the colour accordingly
             pixels[(offset * scale + i) % shp[0], 270 + j] = pxl
 
-    img.save('../output/5/MARIO-dk-{:04d}-{}-{}.png'.format(seq, ops, datetime.now()))
+    img.save('../output/6/MARIO-dk-{:04d}-{}-{}.png'.format(seq, ops, datetime.now()))
 
 
 def make_some_frames(start_n, n_frames, max_n, idx, offset=26, gradient=1,
@@ -70,7 +70,7 @@ def make_some_frames(start_n, n_frames, max_n, idx, offset=26, gradient=1,
         if offset >= width:
             offset = offset % width
 
-        if gradient == 1 and i == 0:
+        if gradient == 1 and i == 0 and start_n == 0:
             ops = 0
         else:
             exp = (max_n - abs(2 * n - max_n)) / max_n
@@ -90,17 +90,26 @@ def make_all_frames():
     start_n, offset, idx = make_some_frames(0, max_n//2, max_n, idx)
     start_n, offset, idx = make_some_frames(start_n, max_n//2, max_n, idx, offset, -1)
     start_n, offset, idx = make_some_frames(0, 1, 1, idx)
-    # start_n, offset, idx = make_some_frames(start_n, 30, max_n, idx, offset, 1)
-    # start_n, offset, idx = make_some_frames(start_n, 10, max_n, idx, offset, -1)
-    # start_n, offset, idx = make_some_frames(start_n, 22, max_n, idx, offset, 1)
-    # start_n, offset, idx = make_some_frames(start_n, 64, max_n, idx, offset, -1)
+
+    # result = make_some_frames(0, 42, 512, idx)
+    # result = make_some_frames(start_n, 42, 512, idx, offset, -1)
+    # result = make_some_frames(start_n, 23, 256, idx, offset, 1)
+    # result = make_some_frames(41, 23, 512, 107, 49, -1)
+    # result = make_some_frames(18, 128, 1024, 130, 36, 1)
+    # result = make_some_frames(146, 42, 1024, 258, 36, -1)
+    # start_n, offset, idx = make_some_frames(104, 42, 1024, 300, 54, 1)
+    # start_n, offset, idx = make_some_frames(32, 42, 256, 300, 54, 1)
+    # start_n, offset, idx = make_some_frames(324, 86, 1024, 342, 8, -1)
+    # start_n, offset, idx = make_some_frames(63, 86, 300, 428, 54, 1)
+    # start_n, offset, idx = make_some_frames(512, 512, 1024, 514, 26, -1)
+    # start_n, offset, idx = make_some_frames(0, 1, 1, idx)
 
 
 def make_walking_video():
     import cv2
     import os
 
-    image_folder = '../output/5'
+    image_folder = '../output/6'
     video_name = 'video.avi'
 
     images = [img for img in sorted(os.listdir(image_folder)) if img.endswith('.png')]
@@ -125,5 +134,6 @@ if __name__ == '__main__':
     # from marios.dk import WALK1
     # glitch_walk(WALK1, 0, 0)
     # make_frames(128)
-    make_walking_video()
     # make_all_frames()
+    make_walking_video()
+
